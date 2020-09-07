@@ -10,6 +10,17 @@
       "StackName": "amplify-ordering-dev-234514",
       "StackId": "arn:aws:cloudformation:us-east-1:184463578931:stack/amplify-ordering-dev-234514/8f4f05a0-f0bc-11ea-b75d-0eb23bbe71c5",
       "AmplifyAppId": "d2tsovx6b30hz7"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2tsovx6b30hz7",
+          "type": "cicd"
+        }
+      },
+      "auth": {
+        "ordering76c594b7": {}
+      }
     }
   }
 }

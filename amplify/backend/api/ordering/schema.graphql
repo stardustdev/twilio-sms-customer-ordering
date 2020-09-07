@@ -1,5 +1,21 @@
-type Todo @model {
+type User @model {
   id: ID!
-  name: String!
-  description: String
+  firstName: String!
+  lastName: String!
+  email: String!
+  phoneNumber: String!
+  isActive: Boolean!
+}
+
+type Item @model {
+  id: ID!
+  title: String!
+  body: String!
+  isActive: Boolean!
+}
+
+type Order @model {
+  id: ID!
+  userId: ID!
+  itemId: ID!
 }
