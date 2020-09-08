@@ -10,9 +10,10 @@ export const createUser = /* GraphQL */ `
       id
       firstName
       lastName
+      password
       email
       phoneNumber
-      isActive
+      status
       role
       createdAt
       updatedAt
@@ -28,9 +29,10 @@ export const updateUser = /* GraphQL */ `
       id
       firstName
       lastName
+      password
       email
       phoneNumber
-      isActive
+      status
       role
       createdAt
       updatedAt
@@ -46,9 +48,10 @@ export const deleteUser = /* GraphQL */ `
       id
       firstName
       lastName
+      password
       email
       phoneNumber
-      isActive
+      status
       role
       createdAt
       updatedAt
@@ -64,7 +67,7 @@ export const createItem = /* GraphQL */ `
       id
       title
       body
-      isActive
+      status
       createdAt
       updatedAt
     }
@@ -79,7 +82,7 @@ export const updateItem = /* GraphQL */ `
       id
       title
       body
-      isActive
+      status
       createdAt
       updatedAt
     }
@@ -94,7 +97,7 @@ export const deleteItem = /* GraphQL */ `
       id
       title
       body
-      isActive
+      status
       createdAt
       updatedAt
     }
@@ -112,15 +115,11 @@ export const createOrder = /* GraphQL */ `
         id
         title
         body
-        isActive
+        status
         createdAt
         updatedAt
       }
-      messages {
-        body
-        fromUser
-        created_at
-      }
+      status
       createdAt
       updatedAt
     }
@@ -138,15 +137,11 @@ export const updateOrder = /* GraphQL */ `
         id
         title
         body
-        isActive
+        status
         createdAt
         updatedAt
       }
-      messages {
-        body
-        fromUser
-        created_at
-      }
+      status
       createdAt
       updatedAt
     }
@@ -164,15 +159,11 @@ export const deleteOrder = /* GraphQL */ `
         id
         title
         body
-        isActive
+        status
         createdAt
         updatedAt
       }
-      messages {
-        body
-        fromUser
-        created_at
-      }
+      status
       createdAt
       updatedAt
     }

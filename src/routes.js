@@ -6,22 +6,22 @@ export default [
   {
     path: '/',
     exact: true,
-    component: () => <Redirect to="/home" />
+    component: () => <Redirect to="/home" />,
   },
   {
-    path: '*',
+    path: '/auth',
     component: AuthLayout,
     routes: [
       {
-        path: '/login',
+        path: '/auth/login',
         exact: true,
-        component: lazy(() => import('src/views/Login'))
+        component: lazy(() => import('src/views/Login')),
       },
       {
-        path: '/register',
+        path: '/auth/register',
         exact: true,
-        component: lazy(() => import('src/views/Register'))
-      }
-    ]
-  }
+        component: lazy(() => import('src/views/Register')),
+      },
+    ],
+  },
 ];

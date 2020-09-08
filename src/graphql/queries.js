@@ -7,9 +7,10 @@ export const getUser = /* GraphQL */ `
       id
       firstName
       lastName
+      password
       email
       phoneNumber
-      isActive
+      status
       role
       createdAt
       updatedAt
@@ -27,9 +28,10 @@ export const listUsers = /* GraphQL */ `
         id
         firstName
         lastName
+        password
         email
         phoneNumber
-        isActive
+        status
         role
         createdAt
         updatedAt
@@ -44,7 +46,7 @@ export const getItem = /* GraphQL */ `
       id
       title
       body
-      isActive
+      status
       createdAt
       updatedAt
     }
@@ -61,7 +63,7 @@ export const listItems = /* GraphQL */ `
         id
         title
         body
-        isActive
+        status
         createdAt
         updatedAt
       }
@@ -78,15 +80,11 @@ export const getOrder = /* GraphQL */ `
         id
         title
         body
-        isActive
+        status
         createdAt
         updatedAt
       }
-      messages {
-        body
-        fromUser
-        created_at
-      }
+      status
       createdAt
       updatedAt
     }
@@ -106,15 +104,11 @@ export const listOrders = /* GraphQL */ `
           id
           title
           body
-          isActive
+          status
           createdAt
           updatedAt
         }
-        messages {
-          body
-          fromUser
-          created_at
-        }
+        status
         createdAt
         updatedAt
       }

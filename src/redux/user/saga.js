@@ -3,7 +3,6 @@ import { Auth, API, graphqlOperation } from 'aws-amplify';
 
 import * as mutations from 'src/graphql/mutations';
 import * as queries from 'src/graphql/queries';
-import * as Constants from 'src/utils/constants';
 import history from 'src/utils/history';
 import { validateEmail } from 'src/utils/utils';
 
@@ -24,6 +23,7 @@ function* userLogin(actionData) {
         })
       );
     }
+    yield put(actions.userLoginSuccess(userInfo.data.getUser));
   } catch (err) {}
 }
 
@@ -32,18 +32,30 @@ function* userSignup(actionData) {
     let userInfo = actionData.payload;
     userInfo = yield API.graphql(
       graphqlOperation(mutations.createUser, {
-        input: userInfo,
+        input: {
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          email: userInfo.email,
+          phoneNumber: userInfo.phone,
+          password: userInfo.password,
+          status: 1,
+          role: 2,
+        },
       })
     );
     if (userInfo?.data?.createUser) {
-      userInfo = userInfo.data.createUser;
-      userInfo = yield Auth.signUp({
+      userInfo = userInfo?.data?.createUser;
+      const authUser = yield Auth.signUp({
+        username: userInfo.email,
         password: userInfo.password,
         attributes: {
           email: userInfo.email,
           'custom:userId': userInfo.id,
         },
       });
+      if (authUser) {
+        history.push('/auth/login');
+      }
     }
   } catch (err) {}
 }

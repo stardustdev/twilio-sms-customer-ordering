@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
 import validate from 'validate.js';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import { Button, TextField } from '@material-ui/core';
+import * as actions from 'src/redux/user/action';
 
 const schema = {
   email: {
@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 function LoginForm({ className, ...rest }) {
   const classes = useStyles();
-  const history = useHistory();
   const dispatch = useDispatch();
   const [formState, setFormState] = useState({
     isValid: false,
@@ -67,8 +66,7 @@ function LoginForm({ className, ...rest }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // dispatch(login());
-    history.push('/');
+    dispatch(actions.userLogin(formState.values));
   };
 
   const hasError = (field) =>

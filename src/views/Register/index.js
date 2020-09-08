@@ -6,7 +6,7 @@ import {
   CardContent,
   Typography,
   Divider,
-  Link
+  Link,
 } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 import gradients from 'src/utils/gradients';
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: theme.spacing(6, 2)
+    padding: theme.spacing(6, 2),
   },
   card: {
     width: theme.breakpoints.values.sm,
@@ -30,11 +30,11 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       flexGrow: 1,
       flexBasis: '50%',
-      width: '50%'
-    }
+      width: '50%',
+    },
   },
   content: {
-    padding: theme.spacing(8, 4, 3, 4)
+    padding: theme.spacing(8, 4, 3, 4),
   },
   media: {
     borderTopRightRadius: 4,
@@ -45,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     [theme.breakpoints.down('md')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   icon: {
     backgroundImage: gradients.orange,
@@ -58,21 +58,21 @@ const useStyles = makeStyles((theme) => ({
     left: theme.spacing(3),
     height: 64,
     width: 64,
-    fontSize: 32
+    fontSize: 32,
   },
   registerForm: {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   divider: {
-    margin: theme.spacing(2, 0)
+    margin: theme.spacing(2, 0),
   },
   person: {
     marginTop: theme.spacing(2),
-    display: 'flex'
+    display: 'flex',
   },
   avatar: {
-    marginRight: theme.spacing(2)
-  }
+    marginRight: theme.spacing(2),
+  },
 }));
 
 function Register() {

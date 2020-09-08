@@ -2,6 +2,7 @@ type User @model {
   id: ID!
   firstName: String!
   lastName: String!
+  password: String!
   email: AWSEmail!
   phoneNumber: AWSPhone!
   status: Int!

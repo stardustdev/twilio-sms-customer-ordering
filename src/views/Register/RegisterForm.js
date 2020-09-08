@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
 import validate from 'validate.js';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Button, TextField } from '@material-ui/core';
+import {
+  Button,
+  Checkbox,
+  FormHelperText,
+  TextField,
+  Typography,
+  Link,
+} from '@material-ui/core';
+import * as actions from 'src/redux/user/action';
 
 const schema = {
   firstName: {
@@ -64,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RegisterForm({ className, ...rest }) {
   const classes = useStyles();
-  const history = useHistory();
+  const dispatch = useDispatch();
   const [formState, setFormState] = useState({
     isValid: false,
     values: {},
@@ -79,7 +88,10 @@ function RegisterForm({ className, ...rest }) {
       ...prevFormState,
       values: {
         ...prevFormState.values,
-        [event.target.name]: event.target.value,
+        [event.target.name]:
+          event.target.type === 'checkbox'
+            ? event.target.checked
+            : event.target.value,
       },
       touched: {
         ...prevFormState.touched,
@@ -90,7 +102,7 @@ function RegisterForm({ className, ...rest }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    history.push('/');
+    dispatch(actions.userSignup(formState.values));
   };
 
   const hasError = (field) =>
@@ -145,14 +157,12 @@ function RegisterForm({ className, ...rest }) {
           variant="outlined"
         />
         <TextField
-          error={hasError('phoneNumber')}
-          helperText={
-            hasError('phoneNumber') ? formState.errors.email[0] : null
-          }
-          label="Phone Number"
-          name="phoneNumber"
+          error={hasError('phone')}
+          helperText={hasError('phone') ? formState.errors.phone[0] : null}
+          label="Phone"
+          name="phone"
           onChange={handleChange}
-          value={formState.values.phoneNumber || ''}
+          value={formState.values.phone || ''}
           variant="outlined"
         />
         <TextField
@@ -160,6 +170,7 @@ function RegisterForm({ className, ...rest }) {
           helperText={
             hasError('password') ? formState.errors.password[0] : null
           }
+          fullWidth
           label="Password"
           name="password"
           onChange={handleChange}
@@ -167,6 +178,32 @@ function RegisterForm({ className, ...rest }) {
           value={formState.values.password || ''}
           variant="outlined"
         />
+        <div>
+          <div className={classes.policy}>
+            <Checkbox
+              checked={formState.values.policy || false}
+              className={classes.policyCheckbox}
+              color="primary"
+              name="policy"
+              onChange={handleChange}
+            />
+            <Typography color="textSecondary" variant="body1">
+              I have read the{' '}
+              <Link
+                color="secondary"
+                component={RouterLink}
+                to="#"
+                underline="always"
+                variant="h6"
+              >
+                Terms and Conditions
+              </Link>
+            </Typography>
+          </div>
+          {hasError('policy') && (
+            <FormHelperText error>{formState.errors.policy[0]}</FormHelperText>
+          )}
+        </div>
       </div>
       <Button
         className={classes.submitButton}
