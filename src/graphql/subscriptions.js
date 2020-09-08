@@ -10,6 +10,7 @@ export const onCreateUser = /* GraphQL */ `
       email
       phoneNumber
       isActive
+      role
       createdAt
       updatedAt
     }
@@ -24,6 +25,7 @@ export const onUpdateUser = /* GraphQL */ `
       email
       phoneNumber
       isActive
+      role
       createdAt
       updatedAt
     }
@@ -38,6 +40,7 @@ export const onDeleteUser = /* GraphQL */ `
       email
       phoneNumber
       isActive
+      role
       createdAt
       updatedAt
     }
@@ -83,8 +86,20 @@ export const onCreateOrder = /* GraphQL */ `
   subscription OnCreateOrder {
     onCreateOrder {
       id
-      userId
-      itemId
+      user
+      item {
+        id
+        title
+        body
+        isActive
+        createdAt
+        updatedAt
+      }
+      messages {
+        body
+        fromUser
+        created_at
+      }
       createdAt
       updatedAt
     }
@@ -94,8 +109,20 @@ export const onUpdateOrder = /* GraphQL */ `
   subscription OnUpdateOrder {
     onUpdateOrder {
       id
-      userId
-      itemId
+      user
+      item {
+        id
+        title
+        body
+        isActive
+        createdAt
+        updatedAt
+      }
+      messages {
+        body
+        fromUser
+        created_at
+      }
       createdAt
       updatedAt
     }
@@ -105,8 +132,20 @@ export const onDeleteOrder = /* GraphQL */ `
   subscription OnDeleteOrder {
     onDeleteOrder {
       id
-      userId
-      itemId
+      user
+      item {
+        id
+        title
+        body
+        isActive
+        createdAt
+        updatedAt
+      }
+      messages {
+        body
+        fromUser
+        created_at
+      }
       createdAt
       updatedAt
     }

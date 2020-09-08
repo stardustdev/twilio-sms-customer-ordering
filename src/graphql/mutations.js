@@ -13,6 +13,7 @@ export const createUser = /* GraphQL */ `
       email
       phoneNumber
       isActive
+      role
       createdAt
       updatedAt
     }
@@ -30,6 +31,7 @@ export const updateUser = /* GraphQL */ `
       email
       phoneNumber
       isActive
+      role
       createdAt
       updatedAt
     }
@@ -47,6 +49,7 @@ export const deleteUser = /* GraphQL */ `
       email
       phoneNumber
       isActive
+      role
       createdAt
       updatedAt
     }
@@ -104,8 +107,20 @@ export const createOrder = /* GraphQL */ `
   ) {
     createOrder(input: $input, condition: $condition) {
       id
-      userId
-      itemId
+      user
+      item {
+        id
+        title
+        body
+        isActive
+        createdAt
+        updatedAt
+      }
+      messages {
+        body
+        fromUser
+        created_at
+      }
       createdAt
       updatedAt
     }
@@ -118,8 +133,20 @@ export const updateOrder = /* GraphQL */ `
   ) {
     updateOrder(input: $input, condition: $condition) {
       id
-      userId
-      itemId
+      user
+      item {
+        id
+        title
+        body
+        isActive
+        createdAt
+        updatedAt
+      }
+      messages {
+        body
+        fromUser
+        created_at
+      }
       createdAt
       updatedAt
     }
@@ -132,8 +159,20 @@ export const deleteOrder = /* GraphQL */ `
   ) {
     deleteOrder(input: $input, condition: $condition) {
       id
-      userId
-      itemId
+      user
+      item {
+        id
+        title
+        body
+        isActive
+        createdAt
+        updatedAt
+      }
+      messages {
+        body
+        fromUser
+        created_at
+      }
       createdAt
       updatedAt
     }

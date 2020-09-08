@@ -10,6 +10,7 @@ export const getUser = /* GraphQL */ `
       email
       phoneNumber
       isActive
+      role
       createdAt
       updatedAt
     }
@@ -29,6 +30,7 @@ export const listUsers = /* GraphQL */ `
         email
         phoneNumber
         isActive
+        role
         createdAt
         updatedAt
       }
@@ -71,8 +73,20 @@ export const getOrder = /* GraphQL */ `
   query GetOrder($id: ID!) {
     getOrder(id: $id) {
       id
-      userId
-      itemId
+      user
+      item {
+        id
+        title
+        body
+        isActive
+        createdAt
+        updatedAt
+      }
+      messages {
+        body
+        fromUser
+        created_at
+      }
       createdAt
       updatedAt
     }
@@ -87,8 +101,20 @@ export const listOrders = /* GraphQL */ `
     listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        userId
-        itemId
+        user
+        item {
+          id
+          title
+          body
+          isActive
+          createdAt
+          updatedAt
+        }
+        messages {
+          body
+          fromUser
+          created_at
+        }
         createdAt
         updatedAt
       }

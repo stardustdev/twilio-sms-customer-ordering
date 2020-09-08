@@ -2,20 +2,22 @@ type User @model {
   id: ID!
   firstName: String!
   lastName: String!
-  email: String!
-  phoneNumber: String!
-  isActive: Boolean!
+  email: AWSEmail!
+  phoneNumber: AWSPhone!
+  status: Int!
+  role: Int!
 }
 
 type Item @model {
   id: ID!
   title: String!
   body: String!
-  isActive: Boolean!
+  status: Int!
 }
 
 type Order @model {
   id: ID!
-  userId: ID!
-  itemId: ID!
+  user: ID!
+  item: Item!
+  status: Int!
 }
